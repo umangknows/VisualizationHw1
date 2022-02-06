@@ -224,6 +224,35 @@ a2 = [a21,a22]
 x = a2[0]
 y = a2[1]
 
+df_ = pd.read_csv('d.csv')
+df_ = df_.iloc[1:6]
+
+dimensions = list([ dict(range=(df_['scale'].min(), df_['scale'].max()),tickvals = df_['scale'], ticktext = df_['MMSA'],label='Hospital name', values=df_['scale']),
+                    dict(range=(df_['high_risk_per_ICU_bed'].min(),df_['high_risk_per_ICU_bed'].max()),label='High risk per ICU bed', values=df_['high_risk_per_ICU_bed']),
+                    dict(range=(df_['high_risk_per_hospital'].min(), df_['high_risk_per_hospital'].max()),label='High risk per hospital', values=df_['high_risk_per_hospital']),
+                    dict(range=(df_['icu_beds'].min(), df_['icu_beds'].max()),label='Number of ICU beds', values=df_['icu_beds'])
+                  ])
+
+fig = go.Figure(data= go.Parcoords(line = dict(color = df_['scale'], colorscale = 'agsunset'), dimensions = dimensions))
+fig.update_layout(title_text="Parallel Coords - Hospitals",width=1200, height=800,margin=dict(l=350, r=60, t=60, b=40))
+
+fig.show()
+
+
+categories = ['incidents_85_99', 'fatal_accidents_85_99', 'incidents_00_14']
+    
+label_loc = np.linspace(start=0, stop=1.5 * np.pi, num=len(Air_France))
+
+plt.figure(figsize=(8, 8))
+plt.subplot(polar=True)
+plt.plot(label_loc, Air_France, label='Air France')
+plt.plot(label_loc, American, label='American')
+plt.plot(label_loc, All_Nippon_Airways, label='All Nippon Airways')
+plt.title('Radar chart - Airlines incidents', size=30)
+lines, labels = plt.thetagrids(np.degrees(label_loc), labels=categories)
+plt.legend()
+plt.show()
+
 plt.scatter(x, y)
 plt.xlabel("x-axis of Latin hypercube sampling array")
 plt.ylabel("y-axis of Latin hypercube sampling array")
