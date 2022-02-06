@@ -1,3 +1,7 @@
+# CSV links for Q 2.3
+# https://github.com/fivethirtyeight/data/blob/master/terrorism/france_terrorism_fatalities_by_year.csv
+# https://github.com/fivethirtyeight/data/blob/master/covid-geography/mmsa-icu-beds.csv
+# https://github.com/fivethirtyeight/data/blob/master/airline-safety/airline-safety.csv
 import numpy as np
 from numpy import random as rd
 import random
